@@ -1,10 +1,8 @@
-﻿using HealthCareProvider.API.Domain;
-
-namespace HealthCareProvider.API.Application;
+﻿namespace HealthCareProvider.API.Application;
 
 public record GetProvidersByPracticeQuery(string Practice) : IQuery<GetProvidersByPracticeResponse>;
 
-public record GetProvidersByPracticeResponse(IEnumerable<Provider> providers);
+public record GetProvidersByPracticeResponse(IEnumerable<ProviderListDto> providers);
 
 internal class GetProvidersByPracticeHandler(IDocumentSession session) : IQueryHandler<GetProvidersByPracticeQuery, GetProvidersByPracticeResponse>
 {
@@ -14,7 +12,9 @@ internal class GetProvidersByPracticeHandler(IDocumentSession session) : IQueryH
             .Where(p => p.Practice.Contains(query.Practice))
             .ToListAsync(cancellationToken);
 
-        return new GetProvidersByPracticeResponse(providers);
+        var providerListDto = providers.Adapt<IEnumerable<ProviderListDto>>();
+
+        return new GetProvidersByPracticeResponse(providerListDto);
     }
 }
 

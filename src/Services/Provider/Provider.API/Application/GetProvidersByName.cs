@@ -1,11 +1,8 @@
-﻿using HealthCareProvider.API.Domain;
-using System.Xml.Linq;
-
-namespace HealthCareProvider.API.Application;
+﻿namespace HealthCareProvider.API.Application;
 
 public record GetProvidersByNameQuery(string Name) : IQuery<GetProvidersByNameResponse>;
 
-public record GetProvidersByNameResponse(IEnumerable<Provider> providers);
+public record GetProvidersByNameResponse(IEnumerable<ProviderListDto> providers);
 
 internal class GetProvidersByNameHandler(IDocumentSession session) : IQueryHandler<GetProvidersByNameQuery, GetProvidersByNameResponse>
 {
@@ -15,7 +12,9 @@ internal class GetProvidersByNameHandler(IDocumentSession session) : IQueryHandl
             .Where(p => p.Name.Contains(query.Name))
             .ToListAsync(cancellationToken);
 
-        return new GetProvidersByNameResponse(providers);
+        var providerListDto = providers.Adapt<IEnumerable<ProviderListDto>>();
+
+        return new GetProvidersByNameResponse(providerListDto);
     }
 }
 

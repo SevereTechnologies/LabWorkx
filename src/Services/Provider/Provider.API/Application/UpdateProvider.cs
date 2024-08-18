@@ -1,7 +1,4 @@
-﻿using FluentValidation;
-using HealthCareProvider.API.Domain;
-
-namespace HealthCareProvider.API.Application;
+﻿namespace HealthCareProvider.API.Application;
 
 public record UpdateProviderCommand(
     Guid Id,

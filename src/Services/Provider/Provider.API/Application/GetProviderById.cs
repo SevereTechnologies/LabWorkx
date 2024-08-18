@@ -1,10 +1,8 @@
-﻿using HealthCareProvider.API.Domain;
-
-namespace HealthCareProvider.API.Application;
+﻿namespace HealthCareProvider.API.Application;
 
 public record GetProviderByIdQuery(Guid Id) : IQuery<GetProviderByIdResponse>;
 
-public record GetProviderByIdResponse(Provider? provider);
+public record GetProviderByIdResponse(ProviderDetailsDto? provider);
 
 internal class GetProviderByIdHandler(IDocumentSession session) : IQueryHandler<GetProviderByIdQuery, GetProviderByIdResponse>
 {
@@ -12,7 +10,9 @@ internal class GetProviderByIdHandler(IDocumentSession session) : IQueryHandler<
     {
         var provider = await session.LoadAsync<Provider>(query.Id, cancellationToken);
 
-        return new GetProviderByIdResponse(provider);
+        var providerDto = provider.Adapt<ProviderDetailsDto>();
+
+        return new GetProviderByIdResponse(providerDto);
     }
 }
 

@@ -1,7 +1,4 @@
-﻿using HealthCareProvider.API.Domain;
-using FluentValidation;
-
-namespace HealthCareProvider.API.Application;
+﻿namespace HealthCareProvider.API.Application;
 
 public record CreateProviderCommand(
     string Name,

@@ -1,10 +1,8 @@
-﻿using HealthCareProvider.API.Domain;
-
-namespace HealthCareProvider.API.Application;
+﻿namespace HealthCareProvider.API.Application;
 
 public record GetProvidersQuery(int? PageNumber = 1, int? PageSize = 10) : IQuery<GetProvidersResponse>;
 
-public record GetProvidersResponse(IEnumerable<Provider> Providers);
+public record GetProvidersResponse(IEnumerable<ProviderListDto> Providers);
 
 internal class GetProvidersHandler(IDocumentSession session) : IQueryHandler<GetProvidersQuery, GetProvidersResponse>
 {
@@ -13,7 +11,9 @@ internal class GetProvidersHandler(IDocumentSession session) : IQueryHandler<Get
         var providers = await session.Query<Provider>()
             .ToPagedListAsync(query.PageNumber ?? 1, query.PageSize ?? 10, cancellationToken);
 
-        return new GetProvidersResponse(providers);
+        var providerListDto = providers.Adapt<IEnumerable<ProviderListDto>>();
+
+        return new GetProvidersResponse(providerListDto);
     }
 }
 
