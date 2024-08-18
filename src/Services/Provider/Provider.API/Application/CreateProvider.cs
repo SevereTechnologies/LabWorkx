@@ -1,4 +1,5 @@
 ﻿using HealthCareProvider.API.Domain;
+using FluentValidation;
 
 namespace HealthCareProvider.API.Application;
 
@@ -14,17 +15,17 @@ public record CreateProviderCommand(
 
 public record CreateProviderResponse(Guid Id);
 
-//public class CreateProviderValidator : AbstractValidator<CreateProviderCommand>
-//{
-//    public CreateProviderValidator()
-//    {
-//        RuleFor(x => x.Name).NotEmpty().WithMessage("Name is required");
-//        RuleFor(x => x.Practice).NotEmpty().WithMessage("Practice required");
-//        RuleFor(x => x.Manager).NotEmpty().WithMessage("Manager is required");
-//        RuleFor(x => x.TaxId).NotEmpty().WithMessage("TaxId is required");
-//        RuleFor(x => x.NPI).NotEmpty().WithMessage("NPI is required");
-//    }
-//}
+public class CreateProviderValidator : AbstractValidator<CreateProviderCommand>
+{
+    public CreateProviderValidator()
+    {
+        RuleFor(x => x.Name).NotEmpty().WithMessage("Name is required");
+        RuleFor(x => x.Practice).NotEmpty().WithMessage("Practice required");
+        RuleFor(x => x.Manager).NotEmpty().WithMessage("Manager is required");
+        RuleFor(x => x.TaxId).NotEmpty().WithMessage("TaxId is required");
+        RuleFor(x => x.NPI).NotEmpty().WithMessage("NPI is required");
+    }
+}
 
 internal class CreateProviderHandler(IDocumentSession session) : ICommandHandler<CreateProviderCommand, CreateProviderResponse>
 {
@@ -42,8 +43,10 @@ internal class CreateProviderHandler(IDocumentSession session) : ICommandHandler
             TaxId = command.TaxId
         };
 
-        //save to database
+        //track data
         session.Store(provider);
+
+        //post to database
         await session.SaveChangesAsync(cancellationToken);
 
         //return response
