@@ -1,4 +1,4 @@
-﻿namespace HealthProvider.API.Application;
+﻿namespace HealthCareProvider.API.Application;
 
 public class GetProvidersByName
 {

@@ -1,11 +1,10 @@
-﻿using HealthProvider.API.Domain;
+﻿using HealthCareProvider.API.Domain;
 
-namespace HealthProvider.API.Application;
+namespace HealthCareProvider.API.Application;
 
 public record CreateProviderCommand(
     string Name,
-    string Practice,
-    List<string> Specialties,
+    List<string> Practice,
     string Manager,
     string TaxId,
     string NPI,
@@ -20,8 +19,7 @@ public record CreateProviderResponse(Guid Id);
 //    public CreateProviderValidator()
 //    {
 //        RuleFor(x => x.Name).NotEmpty().WithMessage("Name is required");
-//        RuleFor(x => x.Practice).NotEmpty().WithMessage("Practice is required");
-//        RuleFor(x => x.Specialties).NotEmpty().WithMessage("Specialties required");
+//        RuleFor(x => x.Practice).NotEmpty().WithMessage("Practice required");
 //        RuleFor(x => x.Manager).NotEmpty().WithMessage("Manager is required");
 //        RuleFor(x => x.TaxId).NotEmpty().WithMessage("TaxId is required");
 //        RuleFor(x => x.NPI).NotEmpty().WithMessage("NPI is required");
@@ -32,10 +30,9 @@ internal class CreateProviderHandler(IDocumentSession session) : ICommandHandler
 {
     public async Task<CreateProviderResponse> Handle(CreateProviderCommand command, CancellationToken cancellationToken)
     {
-        var provider = new HealthCareProvider
+        var provider = new Provider
         {
             Name = command.Name,
-            Specialties = command.Specialties,
             Description = command.Description,
             Manager = command.Manager,
             Practice = command.Practice,

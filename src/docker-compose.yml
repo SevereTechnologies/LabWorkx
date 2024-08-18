@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  providerdb:
+    image: postgres
+
+volumes:
+  postgres_provider:
+
+  # provider.api:
+  #   image: ${DOCKER_REGISTRY-}providerapi
+  #   build:
+  #     context: .
+  #     dockerfile: Services/Provider/Provider.API/Dockerfile
