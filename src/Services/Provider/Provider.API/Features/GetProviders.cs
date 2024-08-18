@@ -1,4 +1,4 @@
-﻿namespace HealthCareProvider.API.Application;
+﻿namespace HealthCareProvider.API.Features;
 
 public record GetProvidersQuery(int? PageNumber = 1, int? PageSize = 10) : IQuery<GetProvidersResponse>;
 

@@ -1,4 +1,4 @@
-﻿namespace HealthCareProvider.API.Application;
+﻿namespace HealthCareProvider.API.Features;
 
 public record UpdateProviderCommand(
     Guid Id,

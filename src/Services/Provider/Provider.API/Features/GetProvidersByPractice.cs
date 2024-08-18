@@ -1,4 +1,4 @@
-﻿namespace HealthCareProvider.API.Application;
+﻿namespace HealthCareProvider.API.Features;
 
 public record GetProvidersByPracticeQuery(string Practice) : IQuery<GetProvidersByPracticeResponse>;
 
