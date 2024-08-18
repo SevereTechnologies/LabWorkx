@@ -11,19 +11,23 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcedureCode.API", "Servic
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HealthProvider", "HealthProvider", "{954D1EF3-49D4-4F2D-BCBF-7C7F4E1FF6D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthProvider.API", "Services\HealthProvider\HealthProvider.API\HealthProvider.API.csproj", "{629D7430-7F23-4DBC-ADDD-B399972D2CE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HealthProvider.API", "Services\HealthProvider\HealthProvider.API\HealthProvider.API.csproj", "{629D7430-7F23-4DBC-ADDD-B399972D2CE5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Technician", "Technician", "{FCE5FD30-5262-4E58-9E00-C6119F12BF9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Technician.API", "Services\Technician\Technician.API\Technician.API.csproj", "{AC1390D1-4562-4369-9584-9E08FE6AE4CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Technician.API", "Services\Technician\Technician.API\Technician.API.csproj", "{AC1390D1-4562-4369-9584-9E08FE6AE4CF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Associate", "Associate", "{C6F9BB55-8016-491F-84EE-2232CF71B1AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Associate.API", "Services\Associate\Associate.API\Associate.API.csproj", "{83C6E564-B068-414F-BA93-816035AC419E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Associate.API", "Services\Associate\Associate.API\Associate.API.csproj", "{83C6E564-B068-414F-BA93-816035AC419E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OrderRequest", "OrderRequest", "{28822556-0CA4-4890-B7F1-841687CDE996}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderRequest.API", "Services\OrderRequest\OrderRequest.API\OrderRequest.API.csproj", "{A30C8364-00DA-464A-82B7-4FAA6E0AD2BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderRequest.API", "Services\OrderRequest\OrderRequest.API\OrderRequest.API.csproj", "{A30C8364-00DA-464A-82B7-4FAA6E0AD2BF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApplicationBlocks", "ApplicationBlocks", "{B8C1BD6F-6C5D-4CC4-912A-380DB5F6FEFE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationBlocks", "ApplicationBlocks\ApplicationBlocks\ApplicationBlocks.csproj", "{245D60EE-3B88-472E-9DCD-E05297EFE5D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +55,10 @@ Global
 		{A30C8364-00DA-464A-82B7-4FAA6E0AD2BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A30C8364-00DA-464A-82B7-4FAA6E0AD2BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A30C8364-00DA-464A-82B7-4FAA6E0AD2BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{245D60EE-3B88-472E-9DCD-E05297EFE5D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{245D60EE-3B88-472E-9DCD-E05297EFE5D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{245D60EE-3B88-472E-9DCD-E05297EFE5D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{245D60EE-3B88-472E-9DCD-E05297EFE5D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -66,6 +74,7 @@ Global
 		{83C6E564-B068-414F-BA93-816035AC419E} = {C6F9BB55-8016-491F-84EE-2232CF71B1AD}
 		{28822556-0CA4-4890-B7F1-841687CDE996} = {D2A44230-DB39-4592-8BD5-4D30EAFD5D30}
 		{A30C8364-00DA-464A-82B7-4FAA6E0AD2BF} = {28822556-0CA4-4890-B7F1-841687CDE996}
+		{245D60EE-3B88-472E-9DCD-E05297EFE5D7} = {B8C1BD6F-6C5D-4CC4-912A-380DB5F6FEFE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DCAC3D56-B5EB-474F-85C9-68741763E95E}
