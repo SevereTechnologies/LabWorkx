@@ -1,4 +1,4 @@
-﻿namespace HealthCareProvider.API.Domain;
+﻿namespace HealthCareProvider.API.Models;
 
 public class Provider
 {

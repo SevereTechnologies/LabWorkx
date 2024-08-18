@@ -21,10 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Infrastructure\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\..\ApplicationBlocks\ApplicationBlocks\ApplicationBlocks.csproj" />
   </ItemGroup>
 

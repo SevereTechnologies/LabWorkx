@@ -1,6 +1,6 @@
 ﻿global using ApplicationBlocks.CQRS;
 global using FluentValidation;
-global using HealthCareProvider.API.Domain;
+global using HealthCareProvider.API.Models;
 global using HealthCareProvider.API.DTOs;
 global using Carter;
 global using Mapster;
