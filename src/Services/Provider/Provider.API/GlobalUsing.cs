@@ -1,4 +1,6 @@
 ﻿global using ApplicationBlocks.CQRS;
+global using ApplicationBlocks.Behaviors;
+global using ApplicationBlocks.Exceptions;
 global using FluentValidation;
 global using HealthCareProvider.API.Models;
 global using HealthCareProvider.API.DTOs;
