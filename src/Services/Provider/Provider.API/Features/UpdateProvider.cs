@@ -34,7 +34,7 @@ internal class UpdateProviderHandler(IDocumentSession session) : ICommandHandler
 
         if (provider is null)
         {
-            return new UpdateProviderResponse(true, "Not Found");
+            return new UpdateProviderResponse(false, "Not Found");
         }
 
         // update provider info

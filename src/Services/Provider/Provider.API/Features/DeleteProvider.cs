@@ -22,3 +22,22 @@ internal class DeleteProviderHandler(IDocumentSession session) : ICommandHandler
         return new DeleteProviderResponse(true);
     }
 }
+
+public class DeleteProviderEndpoint : ICarterModule
+{
+    public void AddRoutes(IEndpointRouteBuilder app)
+    {
+        app.MapDelete("/providers/{id}", async (Guid id, ISender sender) =>
+        {
+            var response = await sender.Send(new DeleteProviderCommand(id));
+
+            return Results.Ok(response);
+        })
+        .WithName("DeleteProvider")
+        .Produces<DeleteProviderResponse>(StatusCodes.Status200OK)
+        .ProducesProblem(StatusCodes.Status400BadRequest)
+        .ProducesProblem(StatusCodes.Status404NotFound)
+        .WithSummary("Delete Provider")
+        .WithDescription("Delete Provider");
+    }
+}
