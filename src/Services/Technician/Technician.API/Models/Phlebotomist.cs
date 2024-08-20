@@ -3,7 +3,6 @@
 public class Phlebotomist
 {
     public Guid PhlebotomistId { get; set; }
-    public int CategoryId { get; set; }
     public string FirstName { get; set; } = default!;
     public string LastName { get; set; } = default!;
     public string Email { get; set; } = default!;
@@ -20,9 +19,9 @@ public class Phlebotomist
     public int YearsExperience { get; set; }
     public DateTime HiredDate { get; set; }
     public DateTime? ExitDate { get; set; }
-    public string Description { get; set; } = string.Empty;
-    public ICollection<PhlebotomistVehicle>? Vehicles { get; set; }
+    public string Biography { get; set; } = string.Empty;
     public bool Active { get; set; }
     public DateTime EnteredOn { get; set; }
     public DateTime ModifiedOn { get; set; }
+    public ICollection<PhlebotomistVehicle>? Vehicles { get; set; }
 }

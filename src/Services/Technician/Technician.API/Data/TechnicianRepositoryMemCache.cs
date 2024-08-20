@@ -1,5 +1,5 @@
 ﻿namespace Technician.API.Data;
 
-public interface TechnicianRepositoryMemCache
+public class TechnicianRepositoryMemCache
 {
 }
