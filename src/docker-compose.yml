@@ -4,11 +4,11 @@ services:
   providerdb:
     image: postgres
 
+  provider.api:
+    image: ${DOCKER_REGISTRY-}providerapi
+    build:
+      context: .
+      dockerfile: Services/Provider/Provider.API/Dockerfile
+
 volumes:
   postgres_provider:
-
-  # provider.api:
-  #   image: ${DOCKER_REGISTRY-}providerapi
-  #   build:
-  #     context: .
-  #     dockerfile: Services/Provider/Provider.API/Dockerfile

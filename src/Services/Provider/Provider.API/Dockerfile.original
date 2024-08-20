@@ -10,7 +10,6 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["Services/Provider/Provider.API/Provider.API.csproj", "Services/Provider/Provider.API/"]
-COPY ["ApplicationBlocks/ApplicationBlocks/ApplicationBlocks.csproj", "ApplicationBlocks/ApplicationBlocks/"]
 RUN dotnet restore "./Services/Provider/Provider.API/Provider.API.csproj"
 COPY . .
 WORKDIR "/src/Services/Provider/Provider.API"
