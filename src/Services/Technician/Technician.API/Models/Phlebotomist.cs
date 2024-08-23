@@ -7,7 +7,7 @@ public class Phlebotomist
     public string LastName { get; set; } = default!;
     public string Email { get; set; } = default!;
     public string Phone { get; set; } = default!;
-    public DateOnly DateOfBirth { get; set; }
+    public DateTime DateOfBirth { get; set; }
     public string Gender { get; set; } = default!;
     public string Address { get; set; } = default!;
     public string City { get; set; } = default!;

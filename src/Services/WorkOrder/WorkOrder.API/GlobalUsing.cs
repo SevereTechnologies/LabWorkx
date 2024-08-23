@@ -2,8 +2,8 @@
 global using ApplicationBlocks.Behaviors;
 global using ApplicationBlocks.Exceptions;
 global using FluentValidation;
-global using Technician.API.Models;
-global using Technician.API.Dtos;
+global using WorkOrder.API.Models;
+global using WorkOrder.API.Dtos;
 global using Carter;
 global using Mapster;
 global using Marten;

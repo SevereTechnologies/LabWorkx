@@ -1,4 +1,4 @@
-﻿namespace Technician.API.DTOs;
+﻿namespace Technician.API.Dtos;
 
 public class PhlebotomistListDto
 {

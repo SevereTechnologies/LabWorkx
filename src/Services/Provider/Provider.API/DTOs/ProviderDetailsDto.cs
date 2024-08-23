@@ -1,4 +1,4 @@
-﻿namespace HealthCareProvider.API.DTOs;
+﻿namespace HealthCareProvider.API.Dtos;
 
 public class ProviderDetailsDto
 {
