@@ -4,11 +4,24 @@ services:
   providerdb:
     image: postgres
 
+  workorderdb:
+    image: postgres
+
+  distributedcache:
+    image: redis
+
   provider.api:
     image: ${DOCKER_REGISTRY-}providerapi
     build:
       context: .
       dockerfile: Services/Provider/Provider.API/Dockerfile
 
+  workorder.api:
+    image: ${DOCKER_REGISTRY-}workorderapi
+    build:
+      context: .
+      dockerfile: Services/WorkOrder/WorkOrder.API/Dockerfile
+
 volumes:
   postgres_provider:
+  postgres_workorder:  

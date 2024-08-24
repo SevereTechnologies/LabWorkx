@@ -10,7 +10,6 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["Services/WorkOrder/WorkOrder.API/WorkOrder.API.csproj", "Services/WorkOrder/WorkOrder.API/"]
-COPY ["ApplicationBlocks/ApplicationBlocks/ApplicationBlocks.csproj", "ApplicationBlocks/ApplicationBlocks/"]
 RUN dotnet restore "./Services/WorkOrder/WorkOrder.API/WorkOrder.API.csproj"
 COPY . .
 WORKDIR "/src/Services/WorkOrder/WorkOrder.API"

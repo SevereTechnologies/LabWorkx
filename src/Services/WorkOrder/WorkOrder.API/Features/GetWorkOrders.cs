@@ -20,7 +20,7 @@ public class GetWorkOrdersEndpoints : ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)
     {
-        app.MapGet("/workorder/{technicianId}", async (Guid technicianId, ISender sender) =>
+        app.MapGet("/workorders/{technicianId}", async (Guid technicianId, ISender sender) =>
         {
             var response = await sender.Send(new GetWorkOrdersQuery(technicianId));
 

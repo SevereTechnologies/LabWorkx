@@ -4,7 +4,7 @@ namespace WorkOrder.API.Features;
 
 public record GetWorkOrderQuery(Guid RequestId) : IQuery<GetWorkOrderResponse>;
 
-public record GetWorkOrderResponse(WorkItem? Item);
+public record GetWorkOrderResponse(WorkItem? WorkItem);
 
 public class GetWorkOrderHandler(IWorkOrderRepository repository) : IQueryHandler<GetWorkOrderQuery, GetWorkOrderResponse>
 {
