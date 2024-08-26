@@ -22,7 +22,7 @@ public class ShipperService(PartnerContext dbcontext, ILogger<ShipperService> lo
         // log info
         logger.LogInformation("Shipper retrieved : ID: {ShipperId}, NAME: {ShipperName}", shipper.ShipperId.ToString(), shipper.ShipperName);
 
-        //convert to ShipperResponse to return
+        //convert to Response to return
         var response = shipper.Adapt<ShipperResponse>();
 
         //return response
