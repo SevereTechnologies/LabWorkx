@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+option csharp_namespace = "Partner.GRPC"; //option. generate c#
+
+package shipper;
+
+// The shipper service definition.
+service ShipperProtoServie
+{
+	rpc GetShipper(GetShipperRequest) returns (ShipperResponse);
+	rpc CreateShipper(CreateShipperRequest) returns (ShipperResponse);
+	rpc UpdateShipper(UpdateShipperRequest) returns (ShipperResponse);
+	rpc DeleteShipper(DeleteShipperRequest) returns (DeleteShipperResponse);
+}
+
+// The shipper response model
+message ShipperModel
+{
+    ShipperModel shipper = 1;
+}
+
+// The response
+message ShipperResponse
+{
+    string shipperId = 1;
+    string shipperName = 2;
+    string trackingLink = 3;
+}
+message DeleteShipperResponse
+{
+    bool Success = 1;
+}
+
+// The request message objects
+message GetShipperRequest{
+	string shipperId = 1;
+}
+message CreateShipperRequest{
+	ShipperModel shipper = 1;
+}
+message UpdateShipperRequest{
+	ShipperModel shipper = 1;
+}
+message DeleteShipperRequest{
+	string shipperId = 1;
+}
+

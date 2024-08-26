@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+option csharp_namespace = "Partner.GRPC";
+
+package lab;
+
+// The lab service definition.
+service LabProtoService
+{
+	rpc GetLab(GetLabRequest) returns (LabResponse);
+	rpc CreateLab(CreateLabRequest) returns (LabResponse);
+	rpc UpdateLab(UpdateLabRequest) returns (LabResponse);
+	rpc DeleteLab(DeleteLabRequest) returns (DeleteLabResponse);
+}
+
+// The lab response model
+message LabModel {
+	string labId = 1;
+	string labName = 2;
+	string labType = 3;
+	int32 taxCode = 4;
+	string manager = 5;
+    string Address = 6;
+    string City = 7;
+    string State = 8;
+    int32 Zip = 9;
+    string Country = 10;
+    string Phone = 11;
+    string Email = 12;
+    string Website = 13;
+}
+
+// The lab response message objects
+message LabResponse
+{
+    LabModel lab = 1;
+}
+message DeleteLabResponse
+{
+    bool Success = 1;
+}
+
+// The request message objects
+message GetLabRequest{
+	string labId = 1;
+}
+message CreateLabRequest{
+	LabModel lab = 1;
+}
+message UpdateLabRequest{
+	LabModel lab = 1;
+}
+message DeleteLabRequest{
+	string labId = 1;
+}
