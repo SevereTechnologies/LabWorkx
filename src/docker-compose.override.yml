@@ -53,9 +53,12 @@ services:
       - ASPNETCORE_HTTPS_PORTS=8081
       - ConnectionStrings__Database=Server=workorderdb;Port=5432;Database=WorkOrderDB;User Id=postgres;Password=postgres;Include Error Detail=true
       - ConnectionStrings__Redis=distributedcache:6379
+      - GrpcSettings__LabUrl=https://partner.grpc:8081
+      - GrpcSettings__ShipperUrl=https://partner.grpc:8081
     depends_on:
       - workorderdb
       - distributedcache
+      - partner.grpc
 
     ports:
       - "6001:8080"

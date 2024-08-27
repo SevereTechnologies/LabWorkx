@@ -27,4 +27,13 @@
     <ProjectReference Include="..\..\..\ApplicationBlocks\ApplicationBlocks\ApplicationBlocks.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Protobuf Include="..\..\Partner\Partner.GRPC\Protos\lab.proto" GrpcServices="Client">
+      <Link>Protos\lab.proto</Link>
+    </Protobuf>
+    <Protobuf Include="..\..\Partner\Partner.GRPC\Protos\shipper.proto" GrpcServices="Client">
+      <Link>Protos\shipper.proto</Link>
+    </Protobuf>
+  </ItemGroup>
+
 </Project>

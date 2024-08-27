@@ -1,5 +1,6 @@
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Partner.GRPC;
 using WorkOrder.API.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -29,6 +30,37 @@ builder.Services.Decorate<IWorkOrderRepository, RedisCacheWorkOrderRepository>()
 builder.Services.AddStackExchangeRedisCache(options =>
 {
     options.Configuration = builder.Configuration.GetConnectionString("Redis");
+});
+
+//gRPC Services
+builder.Services.AddGrpcClient<LabProtoService.LabProtoServiceClient>(options =>
+{
+    options.Address = new Uri(builder.Configuration["GrpcSettings:LabUrl"]!);
+})
+.ConfigurePrimaryHttpMessageHandler(() => // TEMPORARY - ENVIRONMENT ONLY, bypass certificate in docker service image
+{
+    var handler = new HttpClientHandler
+    {
+        ServerCertificateCustomValidationCallback =
+        HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+    };
+
+    return handler;
+});
+
+builder.Services.AddGrpcClient<ShipperProtoServie.ShipperProtoServieClient>(options =>
+{
+    options.Address = new Uri(builder.Configuration["GrpcSettings:ShipperUrl"]!);
+})
+.ConfigurePrimaryHttpMessageHandler(() => // TEMPORARY - DEV ENVIRONMENT ONLY, bypass certificate in docker service image
+{
+    var handler = new HttpClientHandler
+    {
+        ServerCertificateCustomValidationCallback =
+        HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+    };
+
+    return handler;
 });
 
 //Cross-Cutting Services

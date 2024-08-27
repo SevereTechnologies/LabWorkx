@@ -1,4 +1,5 @@
-﻿using WorkOrder.API.Repository;
+﻿using Partner.GRPC;
+using WorkOrder.API.Repository;
 
 namespace WorkOrder.API.Features;
 
@@ -19,13 +20,26 @@ public class StoreWorkOrderValidator : AbstractValidator<StoreWorkOrderCommand>
     }
 }
 
-public class StoreWorkOrderHandler(IWorkOrderRepository repository) : ICommandHandler<StoreWorkOrderCommand, StoreWorkOrderResponse>
+public class StoreWorkOrderHandler(IWorkOrderRepository repository, LabProtoService.LabProtoServiceClient labProto, ShipperProtoServie.ShipperProtoServieClient shipperProto) : ICommandHandler<StoreWorkOrderCommand, StoreWorkOrderResponse>
 {
     public async Task<StoreWorkOrderResponse> Handle(StoreWorkOrderCommand command, CancellationToken cancellationToken)
     {
+        await SetPartnerNames(command.WorkItem, cancellationToken);
+
         await repository.StoreWorkOrderAsync(command.WorkItem, cancellationToken);
 
         return new StoreWorkOrderResponse(command.WorkItem.RequestId);
+    }
+
+    private async Task SetPartnerNames(WorkItem item, CancellationToken cancellationToken)
+    {
+        // Communicate with Parther.GRPC service to get Lab and Shipper Details
+
+        var labResponse = await labProto.GetLabAsync(new GetLabRequest { LabId = item.LabId.ToString() }, cancellationToken: cancellationToken);
+        item.LabName = labResponse.Lab.LabName;
+
+        var shipperResponse = await shipperProto.GetShipperAsync(new GetShipperRequest { ShipperId = item.ShipperId.ToString() }, cancellationToken: cancellationToken);
+        item.ShipperName = shipperResponse.ShipperName;
     }
 }
 
