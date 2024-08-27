@@ -12,7 +12,7 @@ builder.Services.AddDbContext<PartnerContext>(opts =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-app.UseMigration(); // do first so data (AutoMigrateExtension) migration occurs first in the pipeline 
+app.UseMigration(); // do first so data (DataMigrationExtension) migration occurs first in the pipeline 
 app.MapGrpcService<GreeterService>();
 app.MapGrpcService<ShipperService>();
 app.MapGrpcService<LabService>();

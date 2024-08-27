@@ -12,11 +12,11 @@ public class ShipperService(PartnerContext dbcontext, ILogger<ShipperService> lo
     {
         var shipper = await dbcontext
             .Shippers
-            .FirstOrDefaultAsync(x => x.ShipperId == new Guid(request.ShipperId));
+            .FirstOrDefaultAsync(x => x.ShipperId == request.ShipperId);
 
         if (shipper == null)
         {
-            shipper = new Models.Shipper { ShipperId = new Guid(), ShipperName = "No Shipper", TrackingLink = "None" };
+            shipper = new Shipper { ShipperId = new Guid().ToString(), ShipperName = "No Shipper", TrackingLink = "None" };
         }
 
         // log info
@@ -31,7 +31,7 @@ public class ShipperService(PartnerContext dbcontext, ILogger<ShipperService> lo
 
     public override async Task<ShipperResponse> CreateShipper(CreateShipperRequest request, ServerCallContext context)
     {
-        var shipper = request.Shipper.Adapt<Shipper>();
+        var shipper = request.Adapt<Shipper>();
         if (shipper is null)
         {
             throw new RpcException(new Status(StatusCode.InvalidArgument, "Invalid request object."));
@@ -49,7 +49,7 @@ public class ShipperService(PartnerContext dbcontext, ILogger<ShipperService> lo
 
     public override async Task<ShipperResponse> UpdateShipper(UpdateShipperRequest request, ServerCallContext context)
     {
-        var shipper = request.Shipper.Adapt<Shipper>();
+        var shipper = request.Adapt<Shipper>();
         if (shipper is null)
             throw new RpcException(new Status(StatusCode.InvalidArgument, "Invalid request object."));
 
@@ -67,7 +67,7 @@ public class ShipperService(PartnerContext dbcontext, ILogger<ShipperService> lo
     {
         var shipper = await dbcontext
             .Shippers
-            .FirstOrDefaultAsync(x => x.ShipperId == new Guid(request.ShipperId));
+            .FirstOrDefaultAsync(x => x.ShipperId == request.ShipperId);
 
         if (shipper is null)
             throw new RpcException(new Status(StatusCode.NotFound, $"Shipper with ID: {request.ShipperId} not found"));

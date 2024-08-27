@@ -22,6 +22,13 @@ services:
       context: .
       dockerfile: Services/WorkOrder/WorkOrder.API/Dockerfile
 
+  partner.grpc:
+    image: ${DOCKER_REGISTRY-}partnergrpc
+    build:
+      context: .
+      dockerfile: Services/Partner/Partner.GRPC/Dockerfile
+
 volumes:
   postgres_provider:
   postgres_workorder:  
+

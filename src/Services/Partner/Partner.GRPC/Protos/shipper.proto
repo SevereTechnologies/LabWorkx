@@ -13,21 +13,14 @@ service ShipperProtoServie
 	rpc DeleteShipper(DeleteShipperRequest) returns (DeleteShipperResponse);
 }
 
-// The shipper response model
-message ShipperModel
-{
-    ShipperModel shipper = 1;
-}
-
 // The response
-message ShipperResponse
-{
+message ShipperResponse {
     string shipperId = 1;
     string shipperName = 2;
     string trackingLink = 3;
 }
-message DeleteShipperResponse
-{
+
+message DeleteShipperResponse {
     bool Success = 1;
 }
 
@@ -35,12 +28,18 @@ message DeleteShipperResponse
 message GetShipperRequest{
 	string shipperId = 1;
 }
+
 message CreateShipperRequest{
-	ShipperModel shipper = 1;
+    string shipperName = 1;
+    string trackingLink = 2;
 }
+
 message UpdateShipperRequest{
-	ShipperModel shipper = 1;
+    string shipperId = 1;
+    string shipperName = 2;
+    string trackingLink = 3;
 }
+
 message DeleteShipperRequest{
 	string shipperId = 1;
 }

@@ -2,7 +2,7 @@
 
 namespace Partner.GRPC.Data;
 
-public static class AutoMigrateExtension
+public static class DataMigrationExtension
 {
     public static IApplicationBuilder UseMigration(this IApplicationBuilder app)
     {

@@ -8,7 +8,7 @@ public class Shipper
     /// <summary>
     /// Gets or sets the shipper id.
     /// </summary>
-    public Guid ShipperId { get; set; }
+    public string ShipperId { get; set; } = Guid.NewGuid().ToString();
     /// <summary>
     /// Gets or sets the shipper name.
     /// </summary>

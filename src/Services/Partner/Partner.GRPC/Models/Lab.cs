@@ -8,7 +8,7 @@ public class Lab
     /// <summary>
     /// Gets or sets the lab id.
     /// </summary>
-    public Guid LabId { get; set; }
+    public string LabId { get; set; } = Guid.NewGuid().ToString();
     /// <summary>
     /// Gets or sets the lab name.
     /// </summary>

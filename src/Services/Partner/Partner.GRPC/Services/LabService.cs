@@ -3,6 +3,9 @@ using Mapster;
 using Microsoft.EntityFrameworkCore;
 using Partner.GRPC.Data;
 using Partner.GRPC.Models;
+using static Grpc.Core.Metadata;
+using System.Globalization;
+using System.Diagnostics.Eventing.Reader;
 
 namespace Partner.GRPC.Services;
 
@@ -12,18 +15,19 @@ public class LabService(PartnerContext dbcontext, ILogger<LabService> logger) : 
     {
         var lab = await dbcontext
             .Labs
-            .FirstOrDefaultAsync(x => x.LabId == new Guid(request.LabId));
+            .FirstOrDefaultAsync(x => x.LabId == request.LabId);
 
         if (lab == null)
         {
-            lab = new Lab { LabId = new Guid(), LabName = "No Lab" };
+            lab = new Lab { LabId = new Guid().ToString(), LabName = "No Lab Found" };
+            TypeAdapterConfig<Lab, LabModel>.NewConfig().IgnoreNullValues(true); // don't map null values
         }
 
         // log info
         logger.LogInformation("Lab retrieved : ID: {LabId}, NAME: {LabName}", lab.LabId.ToString(), lab.LabName);
 
-        //convert to Response to return
-        var response = lab.Adapt<LabResponse>();
+        //convert to response
+        var response = new LabResponse { Lab = lab.Adapt<LabModel>() };
 
         //return response
         return response;
@@ -34,7 +38,7 @@ public class LabService(PartnerContext dbcontext, ILogger<LabService> logger) : 
         var lab = request.Lab.Adapt<Lab>();
         if (lab is null)
         {
-            throw new RpcException(new Status(StatusCode.InvalidArgument, "Invalid request object."));
+            throw new RpcException(new Status(StatusCode.InvalidArgument, "Invalid request."));
         }
 
         dbcontext.Labs.Add(lab);
@@ -43,16 +47,22 @@ public class LabService(PartnerContext dbcontext, ILogger<LabService> logger) : 
         logger.LogInformation("Lab is successfully created. : ID: {LabId}, NAME: {LabName}", lab.LabId.ToString(), lab.LabName);
 
         // mapp back to response object to return it
-        var response = lab.Adapt<LabResponse>();
+        var response = new LabResponse { Lab = lab.Adapt<LabModel>() };
+
         return response;
     }
 
     public override async Task<LabResponse> UpdateLab(UpdateLabRequest request, ServerCallContext context)
     {
-        var lab = request.Lab.Adapt<Lab>();
+        //var lab = await dbcontext
+        //    .Labs
+        //    .FirstOrDefaultAsync(x => x.LabId == request.Lab.LabId);
+
+        var lab = request.Lab.Adapt<Lab>(); // replace old with new from request
+
         if (lab is null)
         {
-            throw new RpcException(new Status(StatusCode.InvalidArgument, "Invalid request object."));
+            throw new RpcException(new Status(StatusCode.InvalidArgument, "Invalid Request."));
         }
 
         dbcontext.Labs.Update(lab);
@@ -61,7 +71,9 @@ public class LabService(PartnerContext dbcontext, ILogger<LabService> logger) : 
         logger.LogInformation("Lab is successfully updated. ID: {LabId}, NAME: {LabName}", lab.LabId.ToString(), lab.LabName);
 
         // mapp back to response object to return it
-        var response = lab.Adapt<LabResponse>();
+        TypeAdapterConfig<Lab, LabModel>.NewConfig().IgnoreNullValues(true); // don't map null values
+        var response = new LabResponse { Lab = lab.Adapt<LabModel>() };
+
         return response;
     }
 
@@ -69,10 +81,12 @@ public class LabService(PartnerContext dbcontext, ILogger<LabService> logger) : 
     {
         var lab = await dbcontext
             .Labs
-            .FirstOrDefaultAsync(x => x.LabId == new Guid(request.LabId));
+            .FirstOrDefaultAsync(x => x.LabId == request.LabId);
 
         if (lab is null)
+        {
             throw new RpcException(new Status(StatusCode.NotFound, $"Lab with ID: {request.LabId} not found"));
+        }
 
         // delete
         dbcontext.Labs.Remove(lab);
