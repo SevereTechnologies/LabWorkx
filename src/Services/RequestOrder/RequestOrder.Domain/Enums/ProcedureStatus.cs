@@ -1,6 +1,6 @@
 ﻿namespace RequestOrder.Domain.Enums;
 
-public enum ProcedureStatus
+public enum OrderStatus
 {
     Received = 1,
     Collected = 2,

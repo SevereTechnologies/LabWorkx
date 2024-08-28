@@ -4,23 +4,23 @@ using RequestOrder.Domain.ValueObjects;
 
 namespace RequestOrder.Domain.Models;
 
-public class Request : Aggregate<RequestId>
+public class Order : Aggregate<OrderId>
 {
-    private readonly List<Procedure> _procedures = new();
-    public IReadOnlyList<Procedure> Procedures => _procedures.AsReadOnly();
+    private readonly List<OrderItem> _orderItems = new();
 
-    public RequestNo ProcedureNo { get; private set; } = default!;
+    public IReadOnlyList<OrderItem> OrderItems => _orderItems.AsReadOnly();
+
+    public OrderNumber OrderNumber { get; private set; } = default!;
     public TechnicianId TechnicianId { get; private set; } = default!;
     public ProviderId ProviderId { get; private set; } = default!;
     public PatientId PatientId { get; private set; } = default!;
     public LabId LabId { get; private set; } = default!;
     public ShipperId ShipperId { get; private set; } = default!;
-    public string Diagnosis { get; private set; } = default!;
     public Payment Payment { get; private set; } = default!;
-    public ProcedureStatus Status { get; private set; } = ProcedureStatus.Received;
+    public OrderStatus Status { get; private set; } = OrderStatus.Received;
     public decimal TotalDue
     {
-        get => Procedures.Sum(x => x.Price * x.Quantity);
+        get => OrderItems.Sum(x => x.Price * x.Quantity);
         private set { }
     }
 
