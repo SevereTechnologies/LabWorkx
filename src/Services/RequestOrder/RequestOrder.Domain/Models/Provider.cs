@@ -1,7 +1,4 @@
-﻿using RequestOrder.Domain.Abstractions;
-using RequestOrder.Domain.ValueObjects;
-
-namespace RequestOrder.Domain.Models;
+﻿namespace RequestOrder.Domain.Models;
 
 public class Provider : Entity<ProviderId>
 {

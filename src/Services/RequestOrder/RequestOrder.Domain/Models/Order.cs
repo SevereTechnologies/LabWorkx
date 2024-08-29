@@ -1,8 +1,4 @@
-﻿using RequestOrder.Domain.Abstractions;
-using RequestOrder.Domain.Enums;
-using RequestOrder.Domain.ValueObjects;
-
-namespace RequestOrder.Domain.Models;
+﻿namespace RequestOrder.Domain.Models;
 
 /// <summary>
 /// Order is the Aggregate root entity (parent).
@@ -23,9 +19,9 @@ public class Order : Aggregate<OrderId>
     public ShipperId ShipperId { get; private set; } = default!;
     public Payment Payment { get; private set; } = default!;
     public OrderStatus Status { get; private set; } = OrderStatus.Received;
-    public decimal TotalDue
+    public decimal ChargeAmount
     {
-        get => OrderItems.Sum(x => x.Price * x.Quantity);
+        get => OrderItems.Sum(x => x.Charge * x.Quantity);
         private set { }
     }
 
@@ -57,7 +53,7 @@ public class Order : Aggregate<OrderId>
             Status = OrderStatus.Received
         };
 
-        order.AddDomainEvent(new OrderCreatedEvent(order));
+        order.AddDomainEvent(new OrderCreatedDomainEvent(order));
 
         return order;
     }
@@ -80,15 +76,22 @@ public class Order : Aggregate<OrderId>
         Payment = payment;
         Status = status;
 
-        AddDomainEvent(new OrderUpdatedEvent(this));
+        AddDomainEvent(new OrderUpdatedDomainEvent(this));
     }
 
-    public void Add(OrderId orderId, ProcedureId procedureId, string diagnosis, int quantity, decimal price, bool completed, string comment)
+    /// <summary>
+    /// Add a LineItem to an Order
+    /// </summary>
+    /// <param name="orderId"></param>
+    /// <param name="procedureId"></param>
+    /// <param name="quantity"></param>
+    /// <param name="charge"></param>
+    public void Add(OrderId orderId, ProcedureId procedureId, int quantity, decimal charge)
     {
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(quantity);
-        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(price);
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(charge);
 
-        var orderItem = new OrderItem(orderId, procedureId, diagnosis, quantity, price, completed, comment);
+        var orderItem = new OrderItem(orderId, procedureId,  quantity, charge);
 
         _orderItems.Add(orderItem);
     }

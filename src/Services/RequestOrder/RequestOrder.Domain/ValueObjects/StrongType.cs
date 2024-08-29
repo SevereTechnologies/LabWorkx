@@ -1,6 +1,4 @@
-﻿using RequestOrder.Domain.Exceptions;
-
-namespace RequestOrder.Domain.ValueObjects;
+﻿namespace RequestOrder.Domain.ValueObjects;
 
 public record OrderId
 {
