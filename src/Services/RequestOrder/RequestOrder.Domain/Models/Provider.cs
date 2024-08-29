@@ -8,9 +8,8 @@ public class Provider : Entity<ProviderId>
     public string Name { get; set; } = default!;
     public string Manager { get; set; } = default!;
     public string Phone { get; set; } = default!;
-    public Address Address { get; set; } = default!;
 
-    public static Provider Create(string name, string manager, string phone, Address address)
+    public static Provider Create(string name, string manager, string phone)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(name);
         ArgumentException.ThrowIfNullOrWhiteSpace(phone);
@@ -20,8 +19,7 @@ public class Provider : Entity<ProviderId>
         {
             Name = name,
             Manager = manager,
-            Phone = phone,
-            Address = address
+            Phone = phone
         };
 
         return provider;

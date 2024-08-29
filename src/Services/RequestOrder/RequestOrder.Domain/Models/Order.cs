@@ -29,4 +29,76 @@ public class Order : Aggregate<OrderId>
         private set { }
     }
 
+    /// <summary>
+    /// Create New Order
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="orderNumber"></param>
+    /// <param name="technicianId"></param>
+    /// <param name="providerId"></param>
+    /// <param name="patientId"></param>
+    /// <param name="labId"></param>
+    /// <param name="shipperId"></param>
+    /// <param name="payment"></param>
+    /// <returns></returns>
+    public static Order Create(OrderId id, OrderNumber orderNumber, TechnicianId technicianId,
+        ProviderId providerId, PatientId patientId, LabId labId, ShipperId shipperId, Payment payment)
+    {
+        var order = new Order()
+        {
+            Id = id,
+            OrderNumber = orderNumber,
+            TechnicianId = technicianId,
+            ProviderId = providerId,
+            PatientId = patientId,
+            LabId = labId,
+            ShipperId = shipperId,
+            Payment = payment,
+            Status = OrderStatus.Received
+        };
+
+        order.AddDomainEvent(new OrderCreatedEvent(order));
+
+        return order;
+    }
+
+    /// <summary>
+    /// Update Existing Order
+    /// </summary>
+    /// <param name="orderNumber"></param>
+    /// <param name="technicianId"></param>
+    /// <param name="labId"></param>
+    /// <param name="shipperId"></param>
+    /// <param name="payment"></param>
+    /// <param name="status"></param>
+    public void Update(OrderNumber orderNumber, TechnicianId technicianId, LabId labId, ShipperId shipperId, Payment payment, OrderStatus status)
+    {
+        OrderNumber = orderNumber;
+        TechnicianId = technicianId;
+        LabId = labId;
+        ShipperId = shipperId;
+        Payment = payment;
+        Status = status;
+
+        AddDomainEvent(new OrderUpdatedEvent(this));
+    }
+
+    public void Add(OrderId orderId, ProcedureId procedureId, string diagnosis, int quantity, decimal price, bool completed, string comment)
+    {
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(quantity);
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(price);
+
+        var orderItem = new OrderItem(orderId, procedureId, diagnosis, quantity, price, completed, comment);
+
+        _orderItems.Add(orderItem);
+    }
+
+    public void Remove(ProcedureId procedureId)
+    {
+        var orderItem = _orderItems.FirstOrDefault(x => x.ProcedureId == procedureId);
+        if (orderItem is not null)
+        {
+            _orderItems.Remove(orderItem);
+        }
+    }
 }
