@@ -4,6 +4,11 @@ using RequestOrder.Domain.ValueObjects;
 
 namespace RequestOrder.Domain.Models;
 
+/// <summary>
+/// Order is the Aggregate root entity (parent).
+/// Order aka the Aggregate Root is reponsible for managing, creating its children (OrderItem)
+/// that includes: Create Order and Add OrderItem(s) to the Order
+/// </summary>
 public class Order : Aggregate<OrderId>
 {
     private readonly List<OrderItem> _orderItems = new();

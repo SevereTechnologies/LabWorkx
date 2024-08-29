@@ -3,9 +3,14 @@ using RequestOrder.Domain.ValueObjects;
 
 namespace RequestOrder.Domain.Models;
 
+/// <summary>
+/// OrderItem is the child of the Aggregate root entity (it's parent) which is Order.
+/// Order aka the Aggregate Root is reponsible for managing, creating its children
+/// that includes: Create Order and Add OrderItem(s) to the Order
+/// </summary>
 public class OrderItem : Aggregate<OrderItemId>
 {
-    internal OrderItem(OrderId orderId, string procedureCode, string diagnosis, int quanity, decimal price, bool completed, string comment)
+    public OrderItem(OrderId orderId, string procedureCode, string diagnosis, int quanity, decimal price, bool completed, string comment)
     {
         Id = OrderItemId.Of(Guid.NewGuid());
         OrderId = orderId;

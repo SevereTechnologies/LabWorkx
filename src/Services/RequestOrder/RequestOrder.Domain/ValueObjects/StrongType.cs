@@ -54,6 +54,24 @@ public record OrderItemId
     }
 }
 
+public record ProcedureId
+{
+    public Guid Value { get; }
+
+    private ProcedureId(Guid value) => Value = value;
+
+    public static ProcedureId Of(Guid value)
+    {
+        ArgumentNullException.ThrowIfNull(value);
+        if (value == Guid.Empty)
+        {
+            throw new DomainException("ProcedureId cannot be empty.");
+        }
+
+        return new ProcedureId(value);
+    }
+}
+
 public record TechnicianId
 {
     public Guid Value { get; }
