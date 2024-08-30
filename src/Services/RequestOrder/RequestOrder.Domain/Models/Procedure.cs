@@ -7,7 +7,7 @@ public class Procedure : Aggregate<ProcedureId>
     public string Specimen { get; private set; } = default!;
     public string CPT { get; private set; } = default!;
 
-    public static Procedure Create(string code, string name, string specimen, string cpt)
+    public static Procedure Create(ProcedureId id, string code, string name, string specimen, string cpt)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(code);
         ArgumentException.ThrowIfNullOrWhiteSpace(name);
@@ -16,6 +16,7 @@ public class Procedure : Aggregate<ProcedureId>
 
         var procedure = new Procedure
         {
+            Id = id,
             Code = code,
             Name = name,
             Specimen = specimen,
