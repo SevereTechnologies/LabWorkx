@@ -19,6 +19,7 @@ public class Order : Aggregate<OrderId>
     public ShipperId ShipperId { get; private set; } = default!;
     public Payment Payment { get; private set; } = default!;
     public OrderStatus Status { get; private set; } = OrderStatus.Received;
+    public int DrivingDistance { get; private set; } = default!;
     public decimal ChargeAmount
     {
         get => OrderItems.Sum(x => x.Charge * x.Quantity);
@@ -67,7 +68,7 @@ public class Order : Aggregate<OrderId>
     /// <param name="shipperId"></param>
     /// <param name="payment"></param>
     /// <param name="status"></param>
-    public void Update(OrderNumber orderNumber, TechnicianId technicianId, LabId labId, ShipperId shipperId, Payment payment, OrderStatus status)
+    public void Update(OrderNumber orderNumber, TechnicianId technicianId, LabId labId, ShipperId shipperId, Payment payment, int drivingDistance, OrderStatus status)
     {
         OrderNumber = orderNumber;
         TechnicianId = technicianId;
@@ -75,6 +76,7 @@ public class Order : Aggregate<OrderId>
         ShipperId = shipperId;
         Payment = payment;
         Status = status;
+        DrivingDistance = drivingDistance;
 
         AddDomainEvent(new OrderUpdatedDomainEvent(this));
     }
