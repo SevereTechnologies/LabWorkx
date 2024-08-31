@@ -4,6 +4,8 @@ public class ShipperConfiguration : IEntityTypeConfiguration<Shipper>
 {
     public void Configure(EntityTypeBuilder<Shipper> builder)
     {
+        builder.ToTable("Shipper");
+
         builder.HasKey(x => x.Id);
 
         builder.Property(x => x.Id).HasConversion(

@@ -4,6 +4,8 @@ public class PatientConfiguration : IEntityTypeConfiguration<Patient>
 {
     public void Configure(EntityTypeBuilder<Patient> builder)
     {
+        builder.ToTable("Patient");
+
         builder.HasKey(x => x.Id);
 
         // convert PatientId strongTypeId valueobject to database ID

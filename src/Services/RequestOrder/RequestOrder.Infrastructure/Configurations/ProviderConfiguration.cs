@@ -4,6 +4,8 @@ public class ProviderConfiguration : IEntityTypeConfiguration<Provider>
 {
     public void Configure(EntityTypeBuilder<Provider> builder)
     {
+        builder.ToTable("Provider");
+
         builder.HasKey(x => x.Id);
 
         builder.Property(x => x.Id).HasConversion(

@@ -4,6 +4,8 @@ public class LabConfiguration : IEntityTypeConfiguration<Lab>
 {
     public void Configure(EntityTypeBuilder<Lab> builder)
     {
+        builder.ToTable("Lab");
+
         builder.HasKey(x => x.Id);
 
         builder.Property(x => x.Id).HasConversion(

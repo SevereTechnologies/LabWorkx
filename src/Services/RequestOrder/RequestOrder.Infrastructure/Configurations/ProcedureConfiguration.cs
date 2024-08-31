@@ -4,6 +4,8 @@ public class ProcedureConfiguration : IEntityTypeConfiguration<Procedure>
 {
     public void Configure(EntityTypeBuilder<Procedure> builder)
     {
+        builder.ToTable("Procedure");
+
         builder.HasKey(x => x.Id);
 
         builder.Property(x => x.Id).HasConversion(

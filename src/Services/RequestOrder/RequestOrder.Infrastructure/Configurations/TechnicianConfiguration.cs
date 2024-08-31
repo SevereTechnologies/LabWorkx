@@ -4,6 +4,8 @@ internal class TechnicianConfiguration : IEntityTypeConfiguration<Technician>
 {
     public void Configure(EntityTypeBuilder<Technician> builder)
     {
+        builder.ToTable("Technician");
+
         builder.HasKey(x => x.Id);
 
         builder.Property(x => x.Id).HasConversion(
