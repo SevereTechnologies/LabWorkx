@@ -2,32 +2,49 @@
 
 public record Payment
 {
-    public string CardName { get; } = default!;
-    public string CardNumber { get; } = default!;
-    public string Expiration { get; } = default!;
-    public string CVV { get; } = default!;
-    public int PaymentMethod { get; } = default!;
+    public decimal MedicarePaidAmount { get; } = default!;
+    public DateTime MedicarePaidDate { get; } = default!;
+    public decimal MedicaidPaidAmount { get; } = default!;
+    public DateTime MedicaidPaidDate { get; } = default!;
+    public decimal LabPaidAmount { get; } = default!;
+    public DateTime LabPaidDate { get; } = default!;
+    public decimal OtherPaidAmount { get; } = default!;
+    public DateTime OtherPaidDate { get; } = default!;
 
     protected Payment()
     {
     }
 
-    private Payment(string cardName, string cardNumber, string expiration, string cvv, int paymentMethod)
+    private Payment(
+        decimal medicarePaidAmount, DateTime medicarePaidDate,
+        decimal medicaidPaidAmount, DateTime medicaidPaidDate,
+        decimal labPaidAmount, DateTime labPaidDate,
+        decimal otherPaidAmount, DateTime otherPaidDate)
     {
-        CardName = cardName;
-        CardNumber = cardNumber;
-        Expiration = expiration;
-        CVV = cvv;
-        PaymentMethod = paymentMethod;
+        MedicarePaidAmount = medicarePaidAmount;
+        MedicarePaidDate = medicarePaidDate;
+        MedicaidPaidAmount = medicaidPaidAmount;
+        MedicaidPaidDate = medicaidPaidDate;
+        LabPaidAmount = labPaidAmount;
+        LabPaidDate = labPaidDate;
+        OtherPaidAmount = otherPaidAmount;
+        OtherPaidDate = otherPaidDate;
     }
 
-    public static Payment Of(string cardName, string cardNumber, string expiration, string cvv, int paymentMethod)
+    public static Payment Of(
+        decimal medicarePaidAmount, DateTime medicarePaidDate,
+        decimal medicaidPaidAmount, DateTime medicaidPaidDate,
+        decimal labPaidAmount, DateTime labPaidDate,
+        decimal otherPaidAmount, DateTime otherPaidDate)
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(cardName);
-        ArgumentException.ThrowIfNullOrWhiteSpace(cardNumber);
-        ArgumentException.ThrowIfNullOrWhiteSpace(cvv);
-        ArgumentOutOfRangeException.ThrowIfGreaterThan(cvv.Length, 3);
-
-        return new Payment(cardName, cardNumber, expiration, cvv, paymentMethod);
+        return new Payment(
+            medicarePaidAmount,
+            medicarePaidDate,
+            medicaidPaidAmount,
+            medicaidPaidDate,
+            labPaidAmount,
+            labPaidDate,
+            otherPaidAmount,
+            otherPaidDate);
     }
 }

@@ -17,12 +17,14 @@ public class Order : Aggregate<OrderId>
     public PatientId PatientId { get; private set; } = default!;
     public LabId LabId { get; private set; } = default!;
     public ShipperId ShipperId { get; private set; } = default!;
+    public Address Address { get; private set; } = default!;
     public Payment Payment { get; private set; } = default!;
+    public Insurance Insurance { get; private set; } = default!;
     public OrderStatus Status { get; private set; } = OrderStatus.Received;
     public int DrivingDistance { get; private set; } = default!;
-    public decimal ChargeAmount
+    public decimal TotalCost
     {
-        get => OrderItems.Sum(x => x.Charge * x.Quantity);
+        get => OrderItems.Sum(x => x.Cost * x.Quantity);
         private set { }
     }
 
@@ -36,10 +38,12 @@ public class Order : Aggregate<OrderId>
     /// <param name="patientId"></param>
     /// <param name="labId"></param>
     /// <param name="shipperId"></param>
+    /// <param name="patientAddress"></param>
     /// <param name="payment"></param>
     /// <returns></returns>
     public static Order Create(OrderId id, OrderNumber orderNumber, TechnicianId technicianId,
-        ProviderId providerId, PatientId patientId, LabId labId, ShipperId shipperId, Payment payment)
+        ProviderId providerId, PatientId patientId, LabId labId, ShipperId shipperId,
+        Address patientAddress, Insurance insurance, Payment payment)
     {
         var order = new Order()
         {
@@ -50,6 +54,8 @@ public class Order : Aggregate<OrderId>
             PatientId = patientId,
             LabId = labId,
             ShipperId = shipperId,
+            Address = patientAddress,
+            Insurance = insurance,
             Payment = payment,
             Status = OrderStatus.Received
         };
@@ -66,14 +72,20 @@ public class Order : Aggregate<OrderId>
     /// <param name="technicianId"></param>
     /// <param name="labId"></param>
     /// <param name="shipperId"></param>
+    /// <param name="patientAddress"></param>
+    /// <param name="insurance"></param>
     /// <param name="payment"></param>
+    /// <param name="drivingDistance">Driving distance to Patient inn Miles.</param>
     /// <param name="status"></param>
-    public void Update(OrderNumber orderNumber, TechnicianId technicianId, LabId labId, ShipperId shipperId, Payment payment, int drivingDistance, OrderStatus status)
+    public void Update(OrderNumber orderNumber, TechnicianId technicianId, LabId labId, ShipperId shipperId,
+        Address patientAddress, Insurance insurance, Payment payment, int drivingDistance, OrderStatus status)
     {
         OrderNumber = orderNumber;
         TechnicianId = technicianId;
         LabId = labId;
         ShipperId = shipperId;
+        Address = patientAddress;
+        Insurance = insurance;
         Payment = payment;
         Status = status;
         DrivingDistance = drivingDistance;

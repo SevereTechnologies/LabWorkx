@@ -10,10 +10,8 @@ public class Patient : Entity<PatientId>
     public DateTime DateOfBirth { get; private set; } = default!;
     public string Gender { get; private set; } = default!;
     public string SSN { get; private set; } = default!;
-    public Insurance Insurance { get; private set; } = default!;
-    public Address Address { get; private set; } = default!;
 
-    public static Patient Create(PatientId id, string firstName, string lastName, string phone, DateTime dob, string gender, string ssn, Insurance insurance, Address address)
+    public static Patient Create(PatientId id, string firstName, string lastName, string phone, DateTime dob, string gender, string ssn)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(firstName);
         ArgumentException.ThrowIfNullOrWhiteSpace(lastName);
@@ -36,9 +34,7 @@ public class Patient : Entity<PatientId>
             Phone = phone,
             DateOfBirth = dob,
             Gender = gender,
-            SSN = ssn,
-            Insurance = insurance,
-            Address = address
+            SSN = ssn
         };
 
         return patient;
