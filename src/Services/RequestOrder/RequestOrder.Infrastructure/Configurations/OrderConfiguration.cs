@@ -15,14 +15,35 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
         builder.HasOne<Shipper>().WithMany().HasForeignKey(x => x.ShipperId).IsRequired();
         builder.HasMany(x => x.OrderItems).WithOne().HasForeignKey(x => x.OrderId);
 
+        // Address
+        builder.ComplexProperty(x => x.Address, addressBuilder =>
+        {
+            addressBuilder.Property(x => x.Address1).HasMaxLength(100).IsRequired();
+            addressBuilder.Property(x => x.Country).HasMaxLength(50);
+            addressBuilder.Property(x => x.State).HasMaxLength(50);
+            addressBuilder.Property(x => x.Zip).HasMaxLength(8).IsRequired();
+            addressBuilder.Property(x => x.Country).HasMaxLength(35).IsRequired();
+        });
+
+        // Insurance
+        builder.ComplexProperty(x => x.Insurance, insuranceBuilder =>
+        {
+            insuranceBuilder.Property(x => x.InsuranceCompany).HasMaxLength(100).IsRequired();
+            insuranceBuilder.Property(x => x.InsuranceGroup).HasMaxLength(50).IsRequired();
+            insuranceBuilder.Property(x => x.InsurancePolicy).HasMaxLength(50).IsRequired();
+        });
+
         // Payment
         builder.ComplexProperty(x => x.Payment, paymentBuilder =>
                {
-                   paymentBuilder.Property(x => x.CardName).HasMaxLength(50);
-                   paymentBuilder.Property(x => x.CardNumber).HasMaxLength(24).IsRequired();
-                   paymentBuilder.Property(x => x.Expiration).HasMaxLength(10);
-                   paymentBuilder.Property(x => x.CVV).HasMaxLength(3);
-                   paymentBuilder.Property(x => x.PaymentMethod);
+                   paymentBuilder.Property(x => x.LabPaidAmount);
+                   paymentBuilder.Property(x => x.LabPaidDate);
+                   paymentBuilder.Property(x => x.MedicaidPaidAmount);
+                   paymentBuilder.Property(x => x.MedicaidPaidDate);
+                   paymentBuilder.Property(x => x.MedicarePaidAmount);
+                   paymentBuilder.Property(x => x.MedicarePaidDate);
+                   paymentBuilder.Property(x => x.OtherPaidAmount);
+                   paymentBuilder.Property(x => x.OtherPaidDate);
                });
 
         // OrderNumber
@@ -42,6 +63,6 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
                 x => x.ToString(),
                 databaseStatus => (OrderStatus)Enum.Parse(typeof(OrderStatus), databaseStatus));
 
-        builder.Property(x => x.ChargeAmount);
+        builder.Property(x => x.TotalCost);
     }
 }

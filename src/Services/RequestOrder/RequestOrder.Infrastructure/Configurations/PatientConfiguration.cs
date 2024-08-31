@@ -16,23 +16,5 @@ public class PatientConfiguration : IEntityTypeConfiguration<Patient>
         builder.Property(x => x.SSN).IsRequired().HasMaxLength(12);
         builder.Property(x => x.Phone).IsRequired().HasMaxLength(12);
         builder.Property(x => x.DateOfBirth).IsRequired();
-
-        // Address
-        builder.ComplexProperty(x => x.Address, addressBuilder =>
-           {
-               addressBuilder.Property(x => x.Address1).HasMaxLength(100).IsRequired();
-               addressBuilder.Property(x => x.Country).HasMaxLength(50);
-               addressBuilder.Property(x => x.State).HasMaxLength(50);
-               addressBuilder.Property(x => x.Zip).HasMaxLength(8).IsRequired();
-               addressBuilder.Property(x => x.Country).HasMaxLength(35).IsRequired();
-           });
-
-        // Insurance
-        builder.ComplexProperty(x => x.Insurance, insuranceBuilder =>
-        {
-            insuranceBuilder.Property(x => x.InsuranceCompany).HasMaxLength(100).IsRequired();
-            insuranceBuilder.Property(x => x.InsuranceGroup).HasMaxLength(50).IsRequired();
-            insuranceBuilder.Property(x => x.InsurancePolicy).HasMaxLength(50).IsRequired();
-        });
     }
 }

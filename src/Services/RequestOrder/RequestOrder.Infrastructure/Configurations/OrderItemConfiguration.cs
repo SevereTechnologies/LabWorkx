@@ -16,6 +16,6 @@ public class OrderItemConfiguration : IEntityTypeConfiguration<OrderItem>
 
         builder.Property(x => x.Quantity).IsRequired();
 
-        builder.Property(x => x.Charge).IsRequired();
+        builder.Property(x => x.Cost).IsRequired();
     }
 }
