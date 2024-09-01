@@ -100,12 +100,12 @@ public class Order : Aggregate<OrderId>
     /// <param name="procedureId"></param>
     /// <param name="quantity"></param>
     /// <param name="charge"></param>
-    public void Add(OrderId orderId, ProcedureId procedureId, int quantity, decimal charge)
+    public void Add(ProcedureId procedureId, int quantity, decimal charge)
     {
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(quantity);
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(charge);
 
-        var orderItem = new OrderItem(orderId, procedureId,  quantity, charge);
+        var orderItem = new OrderItem(Id, procedureId,  quantity, charge);
 
         _orderItems.Add(orderItem);
     }
