@@ -2,7 +2,7 @@
 
 public class Patient : Entity<PatientId>
 {
-    private const int minAge = 18;
+    //private const int minAge = 18;
 
     public string FirstName { get; private set; } = default!;
     public string LastName { get; private set; } = default!;
@@ -19,12 +19,12 @@ public class Patient : Entity<PatientId>
         ArgumentException.ThrowIfNullOrWhiteSpace(gender);
         ArgumentException.ThrowIfNullOrWhiteSpace(ssn);
         
-        int minYear = DateTime.Now.AddYears(-18).Year;
-        //ArgumentOutOfRangeException.ThrowIfLessThan(dob.Year, minYear);
-        if (dob.Year < minYear)
-        {
-            throw new ArgumentOutOfRangeException(nameof(dob), $"Patient must be {minAge} years old or older.");
-        }
+        //int minYear = DateTime.Now.AddYears(-18).Year;
+        ////ArgumentOutOfRangeException.ThrowIfLessThan(dob.Year, minYear);
+        //if (dob.Year < minYear)
+        //{
+        //    throw new ArgumentOutOfRangeException(nameof(dob), $"Patient must be {minAge} years old or older.");
+        //}
 
         var patient = new Patient
         {

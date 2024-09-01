@@ -141,7 +141,7 @@ internal class SeedData
             var order5 = Order.Create(
                 OrderId.Of(new Guid("D651210B-FDFF-4841-92CC-F2EF19E7A3B9")),
                 OrderNumber.Of("444444"),
-                TechnicianId.Of(new Guid("F6E729FC-5CD8-4450-AC2F-D24556C22CA7")),
+                TechnicianId.Of(new Guid("D73FA811-ACD1-40E7-B79A-946EA59681BE")),
                 ProviderId.Of(new Guid("614F2CE0-CA93-4BB4-9422-4C2EF5808F0B")),
                 PatientId.Of(new Guid("60B2E6E3-2D79-49D4-8673-5A8FE4809936")),
                 LabId.Of(new Guid("4A4E32B3-EAA8-455D-8AA7-5530624C59F6")),
@@ -158,7 +158,7 @@ internal class SeedData
             var order6 = Order.Create(
                 OrderId.Of(new Guid("4EA9213D-B47E-442F-B784-7E36CB49CA39")),
                 OrderNumber.Of("666666"),
-                TechnicianId.Of(new Guid("F6E729FC-5CD8-4450-AC2F-D24556C22CA7")),
+                TechnicianId.Of(new Guid("8FE56660-DF3A-4C10-B09D-BBD3858A51D3")),
                 ProviderId.Of(new Guid("CAAF5A7D-970D-4126-B8CA-AE53FAB721B7")),
                 PatientId.Of(new Guid("CD010EE9-582C-4D86-8043-8C8B858CCAF5")),
                 LabId.Of(new Guid("4A4E32B3-EAA8-455D-8AA7-5530624C59F6")),
