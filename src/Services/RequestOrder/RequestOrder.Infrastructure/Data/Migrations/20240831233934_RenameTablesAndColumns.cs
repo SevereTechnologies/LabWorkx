@@ -102,80 +102,80 @@ namespace RequestOrder.Infrastructure.Data.Migrations
                 name: "Items",
                 newName: "OrderItem");
 
-            migrationBuilder.RenameColumn(
-                name: "Payment_OtherPaidDate",
-                table: "Order",
-                newName: "OtherPaidDate");
+            //migrationBuilder.RenameColumn(
+            //    name: "Payment_OtherPaidDate",
+            //    table: "Order",
+            //    newName: "OtherPaidDate");
 
-            migrationBuilder.RenameColumn(
-                name: "Payment_OtherPaidAmount",
-                table: "Order",
-                newName: "OtherPaidAmount");
+            //migrationBuilder.RenameColumn(
+            //    name: "Payment_OtherPaidAmount",
+            //    table: "Order",
+            //    newName: "OtherPaidAmount");
 
-            migrationBuilder.RenameColumn(
-                name: "Payment_MedicarePaidDate",
-                table: "Order",
-                newName: "MedicarePaidDate");
+            //migrationBuilder.RenameColumn(
+            //    name: "Payment_MedicarePaidDate",
+            //    table: "Order",
+            //    newName: "MedicarePaidDate");
 
-            migrationBuilder.RenameColumn(
-                name: "Payment_MedicarePaidAmount",
-                table: "Order",
-                newName: "MedicarePaidAmount");
+            //migrationBuilder.RenameColumn(
+            //    name: "Payment_MedicarePaidAmount",
+            //    table: "Order",
+            //    newName: "MedicarePaidAmount");
 
-            migrationBuilder.RenameColumn(
-                name: "Payment_MedicaidPaidDate",
-                table: "Order",
-                newName: "MedicaidPaidDate");
+            //migrationBuilder.RenameColumn(
+            //    name: "Payment_MedicaidPaidDate",
+            //    table: "Order",
+            //    newName: "MedicaidPaidDate");
 
-            migrationBuilder.RenameColumn(
-                name: "Payment_MedicaidPaidAmount",
-                table: "Order",
-                newName: "MedicaidPaidAmount");
+            //migrationBuilder.RenameColumn(
+            //    name: "Payment_MedicaidPaidAmount",
+            //    table: "Order",
+            //    newName: "MedicaidPaidAmount");
 
-            migrationBuilder.RenameColumn(
-                name: "Payment_LabPaidDate",
-                table: "Order",
-                newName: "LabPaidDate");
+            //migrationBuilder.RenameColumn(
+            //    name: "Payment_LabPaidDate",
+            //    table: "Order",
+            //    newName: "LabPaidDate");
 
-            migrationBuilder.RenameColumn(
-                name: "Payment_LabPaidAmount",
-                table: "Order",
-                newName: "LabPaidAmount");
+            //migrationBuilder.RenameColumn(
+            //    name: "Payment_LabPaidAmount",
+            //    table: "Order",
+            //    newName: "LabPaidAmount");
 
-            migrationBuilder.RenameColumn(
-                name: "Insurance_InsurancePolicy",
-                table: "Order",
-                newName: "InsurancePolicy");
+            //migrationBuilder.RenameColumn(
+            //    name: "Insurance_InsurancePolicy",
+            //    table: "Order",
+            //    newName: "InsurancePolicy");
 
-            migrationBuilder.RenameColumn(
-                name: "Insurance_InsuranceGroup",
-                table: "Order",
-                newName: "InsuranceGroup");
+            //migrationBuilder.RenameColumn(
+            //    name: "Insurance_InsuranceGroup",
+            //    table: "Order",
+            //    newName: "InsuranceGroup");
 
-            migrationBuilder.RenameColumn(
-                name: "Insurance_InsuranceCompany",
-                table: "Order",
-                newName: "InsuranceCompany");
+            //migrationBuilder.RenameColumn(
+            //    name: "Insurance_InsuranceCompany",
+            //    table: "Order",
+            //    newName: "InsuranceCompany");
 
-            migrationBuilder.RenameColumn(
-                name: "Address_Zip",
-                table: "Order",
-                newName: "Zip");
+            //migrationBuilder.RenameColumn(
+            //    name: "Address_Zip",
+            //    table: "Order",
+            //    newName: "Zip");
 
-            migrationBuilder.RenameColumn(
-                name: "Address_State",
-                table: "Order",
-                newName: "State");
+            //migrationBuilder.RenameColumn(
+            //    name: "Address_State",
+            //    table: "Order",
+            //    newName: "State");
 
-            migrationBuilder.RenameColumn(
-                name: "Address_Country",
-                table: "Order",
-                newName: "Country");
+            //migrationBuilder.RenameColumn(
+            //    name: "Address_Country",
+            //    table: "Order",
+            //    newName: "Country");
 
-            migrationBuilder.RenameColumn(
-                name: "Address_Address1",
-                table: "Order",
-                newName: "Address1");
+            //migrationBuilder.RenameColumn(
+            //    name: "Address_Address1",
+            //    table: "Order",
+            //    newName: "Address1");
 
             migrationBuilder.RenameIndex(
                 name: "IX_Orders_TechnicianId",
