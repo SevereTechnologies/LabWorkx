@@ -12,6 +12,7 @@ public static class DependencyInjection
 
         // Add services to the container.
         services.AddScoped<ISaveChangesInterceptor, AuditEntityInterceptor>();
+        services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptor>();
 
         services.AddDbContext<ApplicationDbContext>((sp, options) =>
         {
