@@ -1,4 +1,4 @@
-﻿namespace RequestOrder.Application.Commands;
+﻿namespace RequestOrder.Application.Features.Commands;
 
 public record CreateOrderResponse(Guid Id, string Message);
 
@@ -43,19 +43,22 @@ public class CreateOrderHandler(IRepositoryManager manager) : ICommandHandler<Cr
             dto.Address.Address2,
             dto.Address.City,
             dto.Address.State,
-            dto.Address.Zip,
+            dto.Address.ZipCode,
             dto.Address.Country);
 
-        var insurance = Insurance.Of(dto.Insurance.InsuranceCompany, dto.Insurance.InsuranceGroup, dto.Insurance.InsurancePolicy);
+        var insurance = Insurance.Of(
+            dto.Insurance.Company,
+            dto.Insurance.Group,
+            dto.Insurance.Policy);
 
         var newOrder = Order.Create(
                 id: OrderId.Of(Guid.NewGuid()),
-                orderNumber: OrderNumber.Of(dto.OrderNumber.Value),
-                technicianId: TechnicianId.Of(dto.TechnicianId.Value),
-                providerId: ProviderId.Of(dto.ProviderId.Value),
-                patientId: PatientId.Of(dto.PatientId.Value),
-                labId: LabId.Of(dto.LabId.Value),
-                shipperId: dto.ShipperId,
+                orderNumber: OrderNumber.Of(dto.OrderNumber),
+                technicianId: TechnicianId.Of(dto.TechnicianId),
+                providerId: ProviderId.Of(dto.ProviderId),
+                patientId: PatientId.Of(dto.PatientId),
+                labId: LabId.Of(dto.LabId),
+                shipperId: ShipperId.Of(dto.ShipperId),
                 patientAddress: address,
                 insurance: insurance,
                 payment: null);
@@ -63,7 +66,7 @@ public class CreateOrderHandler(IRepositoryManager manager) : ICommandHandler<Cr
         //add the line items
         foreach (var itemDto in dto.OrderItems)
         {
-            newOrder.Add(ProcedureId.Of(itemDto.procedureId.Value), itemDto.Quantity, itemDto.Cost);
+            newOrder.Add(ProcedureId.Of(itemDto.procedureId), itemDto.Quantity, itemDto.Cost);
         }
 
         return newOrder;

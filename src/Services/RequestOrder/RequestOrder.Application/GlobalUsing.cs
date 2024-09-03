@@ -5,3 +5,4 @@ global using FluentValidation;
 global using RequestOrder.Application.Data;
 global using RequestOrder.Application.Dtos;
 global using RequestOrder.Domain.Enums;
+global using RequestOrder.Application.Extensions;

@@ -1,4 +1,4 @@
-﻿namespace RequestOrder.Application.Commands;
+﻿namespace RequestOrder.Application.Features.Commands;
 
 public record DeleteOrderResponse(bool IsSuccess, string Message);
 

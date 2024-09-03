@@ -1,4 +1,4 @@
-﻿namespace RequestOrder.Application.Commands;
+﻿namespace RequestOrder.Application.Features.Commands;
 
 public record UpdateOrderResponse(bool IsSuccess, string Message);
 
@@ -49,13 +49,13 @@ public class UpdateOrderHandler(IRepositoryManager manager) : ICommandHandler<Up
             dto.Address.Address2,
             dto.Address.City,
             dto.Address.State,
-            dto.Address.Zip,
+            dto.Address.ZipCode,
             dto.Address.Country);
 
         var insurance = Insurance.Of(
-            dto.Insurance.InsuranceCompany,
-            dto.Insurance.InsuranceGroup,
-            dto.Insurance.InsurancePolicy);
+            dto.Insurance.Company,
+            dto.Insurance.Group,
+            dto.Insurance.Policy);
 
         var payment = Payment.Of(
             dto.Payment.MedicarePaidAmount,
@@ -68,13 +68,13 @@ public class UpdateOrderHandler(IRepositoryManager manager) : ICommandHandler<Up
             dto.Payment.OtherPaidDate);
 
         entity.Update(
-            orderNumber: OrderNumber.Of(dto.OrderNumber.Value),
-            technicianId: TechnicianId.Of(dto.TechnicianId.Value),
-            labId: LabId.Of(dto.LabId.Value),
-            shipperId: ShipperId.Of(dto.ShipperId.Value),
-            patientAddress: dto.Address,
-            insurance: dto.Insurance,
-            payment: dto.Payment,
+            orderNumber: OrderNumber.Of(dto.OrderNumber),
+            technicianId: TechnicianId.Of(dto.TechnicianId),
+            labId: LabId.Of(dto.LabId),
+            shipperId: ShipperId.Of(dto.ShipperId),
+            patientAddress: Address.Of(dto.Address.Address1, dto.Address.Address2, dto.Address.City, dto.Address.State, dto.Address.ZipCode, dto.Address.Country),
+            insurance: Insurance.Of(dto.Insurance.Company, dto.Insurance.Group, dto.Insurance.Policy),
+            payment: Payment.Of(dto.Payment.MedicarePaidAmount, dto.Payment.MedicarePaidDate, dto.Payment.MedicaidPaidAmount, dto.Payment.MedicaidPaidDate, dto.Payment.LabPaidAmount, dto.Payment.LabPaidDate, dto.Payment.OtherPaidAmount, dto.Payment.OtherPaidDate),
             drivingDistance: dto.DrivingDistance,
             status: dto.Status);
     }

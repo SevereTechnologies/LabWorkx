@@ -2,6 +2,6 @@
 
 public record OrderItemDto(
     Guid OrderId,
-    ProcedureId procedureId,
+    Guid procedureId,
     int Quantity,
     decimal Cost);
