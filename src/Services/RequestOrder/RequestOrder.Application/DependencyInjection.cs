@@ -1,5 +1,4 @@
-﻿using ApplicationBlocks.Behaviors;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 

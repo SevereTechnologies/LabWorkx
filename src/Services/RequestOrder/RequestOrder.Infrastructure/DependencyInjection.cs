@@ -1,8 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Diagnostics;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace RequestOrder.Infrastructure;
+﻿namespace RequestOrder.Infrastructure;
 
 public static class DependencyInjection
 {
@@ -19,6 +15,8 @@ public static class DependencyInjection
             options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
             options.UseSqlServer(connectionString);
         });
+
+        services.AddScoped<IOrderRepository, OrderRepository>();
 
         return services;
     }

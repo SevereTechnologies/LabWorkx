@@ -4,3 +4,8 @@ global using RequestOrder.Domain.Models;
 global using RequestOrder.Domain.ValueObjects;
 global using RequestOrder.Domain.Abstractions;
 global using RequestOrder.Infrastructure.Data.Interceptors;
+global using Microsoft.EntityFrameworkCore.Diagnostics;
+global using Microsoft.Extensions.Configuration;
+global using Microsoft.Extensions.DependencyInjection;
+global using RequestOrder.Application.Data;
+global using RequestOrder.Infrastructure.Repository;
