@@ -1,6 +1,6 @@
 ﻿namespace RequestOrder.Application.Commands;
 
-public record CreateOrderResponse(Guid Id);
+public record CreateOrderResponse(Guid Id, string Message);
 
 public record CreateOrderCommand(OrderDto Order) : ICommand<CreateOrderResponse>;
 
@@ -33,7 +33,7 @@ public class CreateOrderHandler(IRepositoryManager manager) : ICommandHandler<Cr
         await manager.SaveChangesAsync(cancellationToken);
 
         //return response
-        return new CreateOrderResponse(order.Id.Value);
+        return new CreateOrderResponse(order.Id.Value, "Order Created Successfully!");
     }
 
     private Order CreateNewOrder(OrderDto dto)
