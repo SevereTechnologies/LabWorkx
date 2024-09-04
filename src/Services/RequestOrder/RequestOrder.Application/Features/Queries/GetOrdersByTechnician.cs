@@ -22,11 +22,11 @@ public class GetOrderByTechnicianHandler(IRepositoryManager manager) : IQueryHan
 
         if (orders == null || orders.Count() == 0)
         {
-            return new GetOrderByTechnicianResponse(null, false, "Order Not Found!");
+            return new GetOrderByTechnicianResponse([], false, "Order Not Found!");
         }
 
         //convert to dto using extension method.
-        var dto = orders.ToOrderDtoList();
+        var dto = orders.ProjectToOrderDtoList();
 
         return new GetOrderByTechnicianResponse(dto, true, "Order Found!");
     }

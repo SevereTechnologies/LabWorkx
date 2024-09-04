@@ -22,11 +22,11 @@ public class GetOrderByProviderHandler(IRepositoryManager manager) : IQueryHandl
 
         if (orders == null || orders.Count() == 0)
         {
-            return new GetOrderByProviderResponse(null, false, "Order Not Found!");
+            return new GetOrderByProviderResponse([], false, "Order Not Found!");
         }
 
         //convert to dto using extension method.
-        var dto = orders.ToOrderDtoList();
+        var dto = orders.ProjectToOrderDtoList();
 
         return new GetOrderByProviderResponse(dto, true, "Order Found!");
     }

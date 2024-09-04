@@ -26,7 +26,7 @@ public class GetOrderByIdHandler(IRepositoryManager manager) : IQueryHandler<Get
         }
 
         //convert to dto using extension method.
-        var dto = order.ToOrderDto();
+        var dto = order.ProjectToOrderDto();
 
         return new GetOrderByIdResponse(dto, true, "Order Found!");
     }

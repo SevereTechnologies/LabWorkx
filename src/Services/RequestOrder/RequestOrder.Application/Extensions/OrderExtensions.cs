@@ -2,7 +2,7 @@
 
 public static class OrderExtensions
 {
-    public static IEnumerable<OrderDto> ToOrderDtoList(this IEnumerable<Order> orders)
+    public static IEnumerable<OrderDto> ProjectToOrderDtoList(this IEnumerable<Order> orders)
     {
         var dtos = orders.Select(order => new OrderDto(
                         Id: order.Id.Value,
@@ -45,7 +45,7 @@ public static class OrderExtensions
         return dtos;
     }
 
-    public static OrderDto ToOrderDto(this Order order)
+    public static OrderDto ProjectToOrderDto(this Order order)
     {
         var dto = new OrderDto(
                         Id: order.Id.Value,

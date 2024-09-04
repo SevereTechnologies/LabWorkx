@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Events\" />
+    <Folder Include="Features\EventHandlers\Integration\" />
   </ItemGroup>
 
 </Project>

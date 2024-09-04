@@ -60,7 +60,7 @@ public class Order : Aggregate<OrderId>
             Status = OrderStatus.Received
         };
 
-        order.AddDomainEvent(new OrderCreatedDomainEvent(order));
+        order.AddDomainEvent(new OrderCreatedEvent(order));
 
         return order;
     }
@@ -90,7 +90,7 @@ public class Order : Aggregate<OrderId>
         Status = status;
         DrivingDistance = drivingDistance;
 
-        AddDomainEvent(new OrderUpdatedDomainEvent(this));
+        AddDomainEvent(new OrderUpdatedEvent(this));
     }
 
     /// <summary>

@@ -1,17 +1,33 @@
-﻿namespace RequestOrder.API;
+﻿using ApplicationBlocks.Exceptions;
+using Carter;
+using HealthChecks.UI.Client;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+
+namespace RequestOrder.API;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddApiServices(this IServiceCollection services)
+    public static IServiceCollection AddApiServices(this IServiceCollection services, IConfiguration configuration)
     {
-        // services.AddCarter();
+        services.AddCarter();
+
+        services.AddExceptionHandler<GlobalExceptionHandler>();
+        services.AddHealthChecks()
+            .AddSqlServer(configuration.GetConnectionString("Database")!);
 
         return services;
     }
 
-    public static WebApplication UseServices(this  WebApplication app)
+    public static WebApplication UseApiServices(this  WebApplication app)
     {
-        // app.MapCarter();
+        app.MapCarter();
+
+        app.UseExceptionHandler(options => { });
+        app.UseHealthChecks("/health",
+            new HealthCheckOptions
+            {
+                ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+            });
 
         return app;
     }
