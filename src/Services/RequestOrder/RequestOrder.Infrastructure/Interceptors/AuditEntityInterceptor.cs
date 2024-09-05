@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.EntityFrameworkCore.Diagnostics;
 
-namespace RequestOrder.Infrastructure.Data.Interceptors;
+namespace RequestOrder.Infrastructure.Interceptors;
 
 public class AuditEntityInterceptor : SaveChangesInterceptor
 {
@@ -29,7 +28,7 @@ public class AuditEntityInterceptor : SaveChangesInterceptor
                 entry.Entity.CreatedOn = DateTime.UtcNow;
             }
 
-            if (entry.State == EntityState.Added || entry.State == EntityState.Modified || entry.HasChangedOwnedEntities())
+            if (entry.State == EntityState.Modified || entry.HasChangedOwnedEntities())
             {
                 entry.Entity.LastUpdatedBy = entry.Entity.UpdatedBy;
                 entry.Entity.LastUpdatedOn = entry.Entity.UpdatedOn;

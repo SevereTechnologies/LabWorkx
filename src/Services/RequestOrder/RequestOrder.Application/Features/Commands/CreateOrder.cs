@@ -51,6 +51,16 @@ public class CreateOrderHandler(IRepositoryManager manager) : ICommandHandler<Cr
             dto.Insurance.Group,
             dto.Insurance.Policy);
 
+        var payment = Payment.Of(
+            dto.Payment.MedicarePaidAmount,
+            dto.Payment.MedicarePaidDate,
+            dto.Payment.MedicaidPaidAmount,
+            dto.Payment.MedicaidPaidDate,
+            dto.Payment.LabPaidAmount,
+            dto.Payment.LabPaidDate,
+            dto.Payment.OtherPaidAmount,
+            dto.Payment.OtherPaidDate);
+
         var newOrder = Order.Create(
                 id: OrderId.Of(Guid.NewGuid()),
                 orderNumber: OrderNumber.Of(dto.OrderNumber),
@@ -61,7 +71,7 @@ public class CreateOrderHandler(IRepositoryManager manager) : ICommandHandler<Cr
                 shipperId: ShipperId.Of(dto.ShipperId),
                 patientAddress: address,
                 insurance: insurance,
-                payment: null);
+                payment: payment);
 
         //add the line items
         foreach (var itemDto in dto.OrderItems)

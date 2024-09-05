@@ -37,20 +37,19 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
 
         // Payment
         builder.ComplexProperty(x => x.Payment, paymentBuilder =>
-               {
-                   paymentBuilder.Property(x => x.LabPaidAmount).HasColumnName("LabPaidAmount");
-                   paymentBuilder.Property(x => x.LabPaidDate).HasColumnName("LabPaidDate");
-                   paymentBuilder.Property(x => x.MedicaidPaidAmount).HasColumnName("MedicaidPaidAmount");
-                   paymentBuilder.Property(x => x.MedicaidPaidDate).HasColumnName("MedicaidPaidDate");
-                   paymentBuilder.Property(x => x.MedicarePaidAmount).HasColumnName("MedicarePaidAmount");
-                   paymentBuilder.Property(x => x.MedicarePaidDate).HasColumnName("MedicarePaidDate");
-                   paymentBuilder.Property(x => x.OtherPaidAmount).HasColumnName("OtherPaidAmount");
-                   paymentBuilder.Property(x => x.OtherPaidDate).HasColumnName("OtherPaidDate");
-               });
+        {
+            paymentBuilder.Property(x => x.LabPaidAmount).HasColumnName("LabPaidAmount");
+            paymentBuilder.Property(x => x.LabPaidDate).HasColumnName("LabPaidDate");
+            paymentBuilder.Property(x => x.MedicaidPaidAmount).HasColumnName("MedicaidPaidAmount");
+            paymentBuilder.Property(x => x.MedicaidPaidDate).HasColumnName("MedicaidPaidDate");
+            paymentBuilder.Property(x => x.MedicarePaidAmount).HasColumnName("MedicarePaidAmount");
+            paymentBuilder.Property(x => x.MedicarePaidDate).HasColumnName("MedicarePaidDate");
+            paymentBuilder.Property(x => x.OtherPaidAmount).HasColumnName("OtherPaidAmount");
+            paymentBuilder.Property(x => x.OtherPaidDate).HasColumnName("OtherPaidDate");
+        });
 
         // OrderNumber
-        builder.ComplexProperty(
-            o => o.OrderNumber, numberBuilder =>
+        builder.ComplexProperty(o => o.OrderNumber, numberBuilder =>
             {
                 numberBuilder.Property(n => n.Value)
                     .HasColumnName(nameof(Order.OrderNumber))

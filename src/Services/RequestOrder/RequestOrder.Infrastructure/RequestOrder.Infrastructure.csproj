@@ -18,8 +18,4 @@
     <ProjectReference Include="..\RequestOrder.Application\RequestOrder.Application.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Interceptors\" />
-  </ItemGroup>
-
 </Project>

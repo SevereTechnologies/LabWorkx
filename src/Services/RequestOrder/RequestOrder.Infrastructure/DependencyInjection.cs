@@ -1,4 +1,7 @@
-﻿namespace RequestOrder.Infrastructure;
+﻿using RequestOrder.Application.Data;
+using RequestOrder.Infrastructure.Interceptors;
+
+namespace RequestOrder.Infrastructure;
 
 public static class DependencyInjection
 {
@@ -16,6 +19,7 @@ public static class DependencyInjection
             options.UseSqlServer(connectionString);
         });
 
+        services.AddScoped<IRepositoryManager, RepositoryManager>();
         services.AddScoped<IOrderRepository, OrderRepository>();
 
         return services;
