@@ -26,6 +26,9 @@ public class AuditEntityInterceptor : SaveChangesInterceptor
             {
                 entry.Entity.CreatedBy = "system";
                 entry.Entity.CreatedOn = DateTime.UtcNow;
+
+                entry.Entity.LastUpdatedBy = "system";
+                entry.Entity.LastUpdatedOn = DateTime.UtcNow;
             }
 
             if (entry.State == EntityState.Modified || entry.HasChangedOwnedEntities())
