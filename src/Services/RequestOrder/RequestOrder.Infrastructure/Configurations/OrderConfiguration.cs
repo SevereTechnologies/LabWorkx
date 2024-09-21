@@ -15,6 +15,7 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
         builder.HasOne<Lab>().WithMany().HasForeignKey(x => x.LabId).IsRequired();
         builder.HasOne<Shipper>().WithMany().HasForeignKey(x => x.ShipperId).IsRequired();
         builder.HasMany(x => x.OrderItems).WithOne().HasForeignKey(x => x.OrderId);
+        builder.Navigation(x => x.OrderItems).AutoInclude(); // Include in query queries by default so I don't have to use the include function
 
         // Address
         builder.ComplexProperty(x => x.Address, addressBuilder =>

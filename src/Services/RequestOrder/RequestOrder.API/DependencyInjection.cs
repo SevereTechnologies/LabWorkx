@@ -1,5 +1,4 @@
 ﻿using ApplicationBlocks.Exceptions;
-using Carter;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 

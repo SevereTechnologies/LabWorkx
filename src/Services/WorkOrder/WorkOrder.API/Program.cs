@@ -1,3 +1,4 @@
+using ApplicationBlocks.Messaging.MassTransit;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Partner.GRPC;
@@ -62,6 +63,9 @@ builder.Services.AddGrpcClient<ShipperProtoServie.ShipperProtoServieClient>(opti
 
     return handler;
 });
+
+//Async Communication Services
+builder.Services.AddMessageBroker(builder.Configuration);
 
 //Cross-Cutting Services
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();

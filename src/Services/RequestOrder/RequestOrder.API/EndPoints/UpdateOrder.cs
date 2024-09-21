@@ -1,6 +1,4 @@
-﻿using Carter;
-using MediatR;
-using RequestOrder.Application.Features.Commands;
+﻿using RequestOrder.Application.Features.Commands;
 
 namespace RequestOrder.API.EndPoints;
 
