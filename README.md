@@ -1,2 +1,4 @@
 # LabWorkx is a Sample, incomplete application built to showcase architecture, pattern and tools I use.
 The system joins Health Providers and Phlebotomists together to collect blood, urine and/or skin sample from patients, then ship them to a lab and return result to providers for communicating with patients.
+The system includes multiple microservices, one of them using Clean Architecture and the others Vertical Slice architecture.
+The microservices exposes endpoints using gRPC for communication between them as well as REST for exposure to external clients. The solution is distributed and uses MassTransit with RabbitMQ. The databases are in SQL Server, PostgreSQL. EF Core for repository pattern implementation and Option pattern using Redis for caching. It's Domain and Event Driven with integration events through EF interceptors
